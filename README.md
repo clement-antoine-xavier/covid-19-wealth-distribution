@@ -16,9 +16,5 @@ Define specific, testable questions to guide your analysis:
 
 | Category | Sources | Key Metrics | Access Links |
 |----------|---------|-------------|--------------|
-| COVID-19 Data | Johns Hopkins University, WHO | Infection rates, mortality rates, vaccination rates | [WHO COVID-19 Dashboard](https://covid19.who.int/) |
-| Demographic Data | World Bank, UN, National Statistical Agencies | Population size, age distribution, urban/rural split | [World Bank Data](https://data.worldbank.org/) |
-| Economic Data | World Bank, IMF, OECD, National Statistical Agencies | GDP, unemployment rates, inflation rates, sectoral output | [World Bank Data](https://data.worldbank.org/) |
-| Wealth Distribution | World Inequality Database, Credit Suisse Global Wealth Databook | Gini coefficient, wealth quintiles, mean/median wealth | [WID.world](https://wid.world/) |
-| Government Policies | Oxford COVID-19 Government Response Tracker, IMF Policy Tracker | Stimulus size, policy types, implementation timeline | [Oxford Tracker](https://www.bsg.ox.ac.uk/research/covid-19-government-response-tracker), [IMF Policy Tracker](https://www.imf.org/en/Topics/imf-and-covid19/Policy-Responses-to-COVID-19) |
-| Labor Markets | ILO, National Statistical Agencies | Employment rates, wage trends, sectoral job losses | [ILOSTAT](https://ilostat.ilo.org/), National statistical office websites |
+| COVID-19 Data | World Health Organization (WHO) | Infection rates, mortality rates | [WHO COVID-19 Dashboard](https://covid19.who.int/) |
+| Demographic Data | World Bank | Population, age distribution, urbanization rates | [World Bank Data](https://data.worldbank.org/) |
