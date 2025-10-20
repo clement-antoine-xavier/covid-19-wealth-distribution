@@ -1,32 +1,41 @@
-# COVID-19 Global Spread
+# COVID-19 - Wealth distribution
 
 ## Research Questions
 
-1. How have COVID-19 infection and mortality rates varied globally over time?
-2. What demographic factors (e.g., age distribution, population density) correlate with higher infection and mortality rates?
-3. How effective have different countries' public health interventions been in controlling the spread of COVID-19?
-4. What is the relationship between vaccination rates and COVID-19 case trends?
-5. How do healthcare infrastructure and resource availability impact COVID-19 outcomes in different regions?
+This project aims to analyze the impact of the COVID-19 pandemic on wealth distribution across different demographics and regions. The primary research questions include:
+
+1. How has the COVID-19 pandemic affected wealth distribution globally and within specific countries?
+2. What demographic groups have been most affected in terms of wealth inequality during the pandemic?
+3. How do changes in wealth distribution correlate with COVID-19 infection rates and government response measures
+4. What are the long-term implications of the pandemic on wealth inequality?
+5. How effective have government interventions been in mitigating wealth disparities exacerbated by the pandemic?
 
 ## Data Sources
 
-| Category | Sources | Key Metrics | Access Links |
-|----------|---------|-------------|--------------|
-| COVID-19 Data | World Health Organization (WHO) | Infection rates, mortality rates | [WHO COVID-19 Dashboard](https://covid19.who.int/) |
-| Demographic Data | World Bank | Population, age distribution, urbanization rates | [World Bank Data](https://data.worldbank.org/) |
+The analysis will utilize various data sources, including:
 
-## Datasets
+- [World Bank datasets on global wealth distribution](https://databank.worldbank.org/source/wealth-accounts)
+- [COVID-19 infection and mortality rates from the World Health Organization (WHO)](https://data.who.int/dashboards/covid19/data)
+- [Government policy response data from the Oxford COVID-19 Government Response Tracker](https://www.bsg.ox.ac.uk/research/publications/variation-government-responses-covid-19)
 
-The `datasets/` folder (included with this repository) contains several CSV files used for the analysis. Below is a quick reference describing each file, its likely purpose, and the key columns you can expect. These descriptions were inferred from the filenames — inspect the CSVs for exact column names and data types.
+## Methodology
 
-| Filename | Purpose | Likely key columns / notes |
-|---|---:|---|
-| `COV_VAC_POLICY_2024.csv` | COVID-19 vaccine policy indicators (2024 snapshot or time series) | Country, Date, PolicyMeasure, PolicyValue, Notes — may follow OWID/WHO policy coding conventions |
-| `COV_VAC_PROD.csv` | Vaccine production data | Country, Date, Manufacturer, DosesProduced, Batch/Facility |
-| `COV_VAC_UPTAKE_2021_2023.csv` | Vaccine uptake / coverage (2021–2023) | Country, Date, AgeGroup, DosesAdministered, PeopleFullyVaccinated, CoveragePercent |
-| `COV_VAC_UPTAKE_2024.csv` | Vaccine uptake / coverage (2024) | Country, Date, AgeGroup, DosesAdministered, PeopleFullyVaccinated, CoveragePercent |
-| `WHO-COVID-19-global-daily-data.csv` | WHO global daily COVID-19 indicators | Country, Date, NewCases, NewDeaths, CumulativeCases, CumulativeDeaths, TestsPerformed |
-| `WHO-COVID-19-global-data.csv` | Aggregated WHO COVID-19 data (cumulative / summary) | Country, Date, Cases, Deaths, Population, Region |
-| `WHO-COVID-19-global-hosp-icu-data.csv` | Hospitalization / ICU metrics | Country, Date, HospitalAdmissions, ICUAdmissions, HospitalBedsOccupied |
-| `WHO-COVID-19-global-monthly-death-by-age-data.csv` | Monthly deaths broken down by age groups | Country, Month, AgeGroup, Deaths |
-| `WHO-COVID-19-global-table-data.csv` | Supplemental WHO table data (various indicators) | Country, IndicatorName, Value, Date — verify specific schema |
+The project will employ a combination of statistical analysis, econometric modeling, and data visualization techniques to address the research questions. Key steps include:
+
+1. Data Collection: Gather relevant datasets from the identified sources.
+2. Data Cleaning: Preprocess the data to handle missing values, inconsistencies, and outliers.
+3. Descriptive Analysis: Conduct initial exploratory data analysis to understand trends and patterns.
+4. Econometric Modeling: Use regression analysis and other econometric techniques to assess the impact of COVID-19 on wealth distribution.
+5. Visualization: Create visual representations of the findings to facilitate interpretation and communication of results.
+6. Interpretation: Analyze the results in the context of existing literature and theories on wealth inequality.
+
+## Expected Outcomes
+
+The project aims to provide insights into how the COVID-19 pandemic has influenced wealth distribution globally and within specific demographics. Expected outcomes include:
+
+- A comprehensive report detailing the findings and implications of the analysis.
+- Visualizations illustrating changes in wealth distribution during the pandemic.
+- Policy recommendations for addressing wealth inequality exacerbated by the pandemic.
+- Identification of demographic groups most affected by wealth disparities during the pandemic.
+- Suggestions for future research directions in the field of wealth distribution and economic resilience in the face of
+global crises.
