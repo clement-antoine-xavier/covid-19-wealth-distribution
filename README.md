@@ -14,9 +14,7 @@ This project aims to analyze the impact of the COVID-19 pandemic on wealth distr
 
 The analysis will utilize various data sources, including:
 
-- [World Bank datasets on global wealth distribution](https://databank.worldbank.org/source/wealth-accounts)
-- [COVID-19 infection and mortality rates from the World Health Organization (WHO)](https://data.who.int/dashboards/covid19/data)
-- [Government policy response data from the Oxford COVID-19 Government Response Tracker](https://www.bsg.ox.ac.uk/research/publications/variation-government-responses-covid-19)
+- [Data on the daily number of new reported COVID-19 cases and deaths by EU/EEA countryArchived](https://www.ecdc.europa.eu/en/publications-data/data-daily-new-cases-covid-19-eueea-country)
 
 ## Methodology
 
