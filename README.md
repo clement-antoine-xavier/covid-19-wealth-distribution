@@ -14,8 +14,8 @@ This project aims to analyze the impact of the COVID-19 pandemic on wealth distr
 
 The analysis will utilize various data sources, including:
 
-- [Data on the daily number of new reported COVID-19 cases and deaths by EU/EEA countryArchived](https://www.ecdc.europa.eu/en/publications-data/data-daily-new-cases-covid-19-eueea-country)
-- [European Rich List Database (ERLDB)](https://data.mendeley.com/datasets/zpsr99hn35/1)
+- [European Centre for Disease Prevention and Control - COVID-19 Data](https://www.ecdc.europa.eu/en/covid-19/data)
+- [European Central Bank - Data Portal](https://data.ecb.europa.eu/data/data-categories)
 
 ## Methodology
 
@@ -38,11 +38,3 @@ The project aims to provide insights into how the COVID-19 pandemic has influenc
 - Identification of demographic groups most affected by wealth disparities during the pandemic.
 - Suggestions for future research directions in the field of wealth distribution and economic resilience in the face of
 global crises.
-
-## More datasets to consider
-
-- [Adjusted wealth (net) of households - Bottom 50% based on net wealth concept, Euro area 20, Quarterly](https://data.ecb.europa.eu/data/datasets/DWA/DWA.Q.I9.S14.N.LE.NWA.B50.EUR.S.N?chart_props=W3sibm9kZUlkIjoiMzc0MjM4NyIsInByb3BlcnRpZXMiOlt7ImNvbG9ySGV4IjoiIiwiY29sb3JUeXBlIjoiIiwiY2hhcnRUeXBlIjoibGluZWNoYXJ0IiwibGluZVN0eWxlIjoiU29saWQiLCJsaW5lV2lkdGgiOiIxLjUiLCJheGlzUG9zaXRpb24iOiJsZWZ0Iiwib2JzZXJ2YXRpb25WYWx1ZSI6ZmFsc2UsImRhdGVzIjpbXSwiaXNUZGF0YSI6ZmFsc2UsIm1vZGlmaWVkVW5pdFR5cGUiOiIiLCJ5ZWFyIjoiZnVsbFJhbmdlIiwic3RhcnREYXRlIjoiMjAwOS0wMy0zMSIsImVuZERhdGUiOiIyMDI1LTAzLTMxIiwic2V0RGF0ZSI6dHJ1ZSwic2hvd1RhYmxlRGF0YSI6dHJ1ZSwiY2hhbmdlTW9kZSI6ZmFsc2UsInNob3dNZW51U3R5bGVDaGFydCI6ZmFsc2UsImRpc3BsYXlNb2JpbGVDaGFydCI6dHJ1ZSwic2NyZWVuU2l6ZSI6Im1heCIsInNjcmVlbldpZHRoIjoxOTEyLCJzaG93VGRhdGEiOmZhbHNlLCJ0cmFuc2Zvcm1lZEZyZXF1ZW5jeSI6Im5vbmUiLCJ0cmFuc2Zvcm1lZFVuaXQiOiJub25lIiwiZnJlcXVlbmN5Ijoibm9uZSIsInVuaXQiOiJub25lIiwibW9kaWZpZWQiOiJmYWxzZSIsInNlcmllc0tleSI6InF1YXJ0ZXJseSIsInNob3d0YWJsZVN0YXRlQmVmb3JlTWF4U2NyZWVuIjpmYWxzZSwiaXNkYXRhY29tcGFyaXNvbiI6ZmFsc2UsInNlcmllc0ZyZXF1ZW5jeSI6InF1YXJ0ZXJseSIsImludGlhbFNlcmllc0ZyZXF1ZW5jeSI6InF1YXJ0ZXJseSIsIm1ldGFkYXRhRGVjaW1hbCI6IjQiLCJpc1RhYmxlU29ydGVkIjpmYWxzZSwiaXNZZWFybHlUZGF0YSI6ZmFsc2UsInJlc3BvbnNlRGF0YUVuZERhdGUiOiIyMDI1LTAzLTMxIiwiaXNpbml0aWFsQ2hhcnREYXRhIjp0cnVlLCJpc0RhdGVzRnJvbURhdGVQaWNrZXIiOnRydWUsImRhdGVQaWNrZXJFbmREYXRlIjoiIiwiaXNEYXRlUGlja2VyRW5kRGF0ZSI6ZmFsc2UsInNlcmllc2tleVNldCI6IiIsImRhdGFzZXRJZCI6IjMzNSIsImlzQ2FsbGJhY2siOmZhbHNlLCJpc1NsaWRlclRkYXRhIjp0cnVlLCJpc1NsaWRlckRhdGEiOnRydWUsImlzSW5pdGlhbENoYXJ0RGF0YUZyb21HcmFwaCI6ZmFsc2UsImNoYXJ0U2VyaWVzS2V5IjoiRFdBLlEuSTkuUzE0Lk4uTEUuTldBLkI1MC5FVVIuUy5OIiwidHlwZU9mIjoiIn1dfV0%3D)
-
-- [GDP Data by Country - Trading Economics](https://tradingeconomics.com/country-list/gdp-%20?continent=europe#:~:text=Trading%20Economics%20provides%20data%20for%2020%20million%20economic,was%20last%20updated%20on%20Tuesday%2C%20November%204%2C%202025.)
-
-- [Average Net Worth by Country - Kaggle](https://www.kaggle.com/datasets/arpitsinghaiml/average-net-worth-by-country)
