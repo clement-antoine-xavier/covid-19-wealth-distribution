@@ -21,14 +21,27 @@ This project combines distributional wealth accounts data from the European Cent
 - **Source**: [European Central Bank - Distributional Wealth Accounts](https://data.ecb.europa.eu/)
 - **Coverage**: Quarterly data (2016-2025)
 - **Metrics**:
-  - Adjusted total assets and net wealth of households
-  - Mean and median wealth distributions
-  - Gini coefficients (inequality measure)
-  - **Distributional breakdowns** (new):
-    - Net wealth by decile (D1-D10)
-    - Top 10%, Top 5%, and Bottom 50% absolute wealth values
-    - Wealth shares (% of total) for Top 10%, Top 5%, and Bottom 50%
+  
+  **Aggregate Wealth Metrics:**
+  - Adjusted total assets of households (not available for Germany)
+  - Adjusted net wealth of households (total)
+  - Mean wealth (average across all households)
+  - Median wealth (50th percentile household)
+  - Gini coefficient (inequality measure, 0=perfect equality to 1=perfect inequality)
+  
+  **Distributional Breakdowns (by percentile):**
+  - Net wealth by decile (D1-D10) - wealth held by each 10% segment
+  - Net wealth of Top 10% (D10) - absolute wealth of richest decile
+  - Net wealth of Top 5% - absolute wealth of top 5%
+  - Net wealth of Bottom 50% (B50) - absolute wealth of lower half
+  
+  **Wealth Share Metrics (% of total wealth):**
+  - Share of Bottom 50% - percentage of total wealth held by lower half
+  - Share of Top 10% - percentage of total wealth held by richest decile
+  - Share of Top 5% - percentage of total wealth held by top 5%
+  
 - **Countries**: Germany (DE), France (FR), Slovenia (SI)
+- **Column Format**: ECB standard notation (e.g., `DWA.Q.{country}.S14.N.LE.NWA.{percentile}.{unit}.S.N`)
 
 ### COVID-19 Epidemiological Data
 
@@ -108,6 +121,35 @@ See [helpers/README.md](helpers/README.md) for detailed module documentation.
 - **Dual-Axis Plots**: Overlay wealth metrics with COVID severity timelines
 - **Dashboard**: Comprehensive 5-panel summary of key findings
 - **Comparison**: Cross-country patterns and divergent outcomes
+
+## 📋 Dataset Column Reference
+
+### Wealth Metrics Columns (per country)
+
+**Core columns used in analysis:**
+
+1. **`median_wealth`** - Net wealth of households, median (EUR, millions)
+2. **`mean_wealth`** - Net wealth of households, mean (EUR, millions)
+3. **`net_wealth`** - Adjusted wealth (net) of households, total (EUR)
+4. **`gini`** - Gini coefficient of households (0-1 scale)
+5. **`net_wealth_top10`** - Net wealth of Top 10% (Decile 10) (EUR)
+6. **`net_wealth_bottom50`** - Net wealth of Bottom 50% (EUR)
+7. **`share_bottom50`** - Share of total wealth held by Bottom 50% (percentage points)
+8. **`share_top10`** - Share of total wealth held by Top 10% (percentage points)
+9. **`share_top5`** - Share of total wealth held by Top 5% (percentage points)
+
+**Note**: Column names follow ECB DWA notation. Full technical names available in `helpers/config.py`.
+
+### COVID-19 Metrics Columns
+
+**Aggregated quarterly metrics:**
+
+1. **`cases`** - Total COVID-19 cases in quarter
+2. **`deaths`** - Total COVID-19 deaths in quarter
+3. **`cases_per_100k`** - Cases per 100,000 population
+4. **`deaths_per_100k`** - Deaths per 100,000 population
+5. **`DATE`** - Quarter end date (quarterly aggregation)
+6. **`countriesAndTerritories`** - Country name
 
 ## 📈 Key Findings
 

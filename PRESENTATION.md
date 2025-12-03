@@ -145,20 +145,29 @@
 
 ## 📊 Key Metrics Analyzed
 
-### 5 Wealth Distribution Indicators
+### Core Wealth Distribution Indicators
 
-1. **Total Assets** - Aggregate household wealth
-2. **Net Wealth** - Assets minus liabilities
-3. **Median Wealth** - Middle household value
-4. **Mean Wealth** - Average household value
-5. **Gini Coefficient** - Inequality measure (0-1 scale)
+**Aggregate Metrics:**
+1. **Net Wealth (Total)** - Adjusted household wealth minus liabilities
+2. **Median Wealth** - Middle household value (50th percentile)
+3. **Mean Wealth** - Average household value
+4. **Gini Coefficient** - Inequality measure (0=equality, 1=inequality)
+
+**Distributional Breakdowns:**
+5. **Net Wealth Top 10%** - Absolute wealth held by richest decile
+6. **Net Wealth Bottom 50%** - Absolute wealth held by lower half
+7. **Share Top 10%** - Percentage of total wealth (top decile)
+8. **Share Top 5%** - Percentage of total wealth (top 5%)
+9. **Share Bottom 50%** - Percentage of total wealth (lower half)
 
 ### Why These Metrics?
 
-- Capture different aspects of distribution
-- Median vs. Mean shows inequality
-- Gini provides standard inequality measure
-- Comparable across countries and time
+- **Aggregate metrics** capture overall trends
+- **Median vs. Mean** reveals wealth concentration
+- **Gini coefficient** provides standardized inequality measure
+- **Distributional breakdowns** show wealth concentration dynamics
+- **Share metrics** enable comparative analysis across countries
+- **Comparable** across countries and time periods
 
 ---
 
@@ -593,6 +602,46 @@ jupyter notebook "Covid-19 - Wealth Distribution.ipynb"
 
 ---
 
+## 📖 Appendix: Dataset Columns Reference
+
+### ECB Distributional Wealth Accounts Columns
+
+**Column naming convention**: `DWA.Q.{CC}.S14.N.LE.NWA.{PCTL}.{UNIT}.S.N`
+
+Where:
+- **DWA.Q** = Distributional Wealth Accounts, Quarterly
+- **{CC}** = Country code (DE, FR, SI)
+- **S14** = Households sector
+- **N.LE** = Net, Legal entities
+- **NWA** = Net Wealth concept
+- **{PCTL}** = Percentile group (D10=Decile 10, B50=Bottom 50%, T10=Top 10%, etc.)
+- **{UNIT}** = Unit (EUR=euros, PT=percentage points, GI=Gini index)
+- **S.N** = Seasonally adjusted, Not applicable
+
+**Example columns used:**
+```python
+# Germany (DE)
+"median_wealth": "Net wealth of households, median (DWA.Q.DE.S14.N.LE.NWA._Z.EUR_MD.S.N)"
+"net_wealth_top10": "Adjusted wealth (net) - Decile 10 (DWA.Q.DE.S14.N.LE.NWA.D10.EUR.S.N)"
+"share_bottom50": "Net wealth, share of bottom 50% (DWA.Q.DE.S14._Z._Z.NWA.B50.PT.S.N)"
+```
+
+### COVID-19 Dataset Columns
+
+**Original ECDC columns** (daily data):
+- `dateRep` - Report date
+- `cases` - Daily new cases
+- `deaths` - Daily new deaths
+- `countriesAndTerritories` - Country name
+- `popData2020` - Population (2020)
+
+**Derived quarterly columns** (analysis):
+- `DATE` - Quarter end date (aggregated)
+- `cases` - Total cases in quarter
+- `deaths` - Total deaths in quarter
+- `cases_per_100k` - Cases per 100,000 population
+- `deaths_per_100k` - Deaths per 100,000 population
+
 ## 📖 Appendix: Wealth Metrics Details
 
 ### Gini Coefficient
@@ -603,6 +652,7 @@ jupyter notebook "Covid-19 - Wealth Distribution.ipynb"
   - 0.3-0.4: Moderate inequality
   - > 0.4: High inequality
 - **Our data**: 0.70-0.75 (high wealth inequality typical for Euro Area)
+- **Column**: Gini coefficient of households (`GI` unit in ECB notation)
 
 ### Median vs. Mean Wealth
 
@@ -610,6 +660,19 @@ jupyter notebook "Covid-19 - Wealth Distribution.ipynb"
 - **Mean**: Average across all households
 - **Gap**: Mean >> Median indicates concentration at top
 - **Trend**: Growing gap = increasing inequality
+- **Units**: EUR millions in dataset
+
+### Distributional Metrics
+
+**Absolute wealth values:**
+- **Top 10% (D10)**: Total wealth held by richest decile
+- **Bottom 50% (B50)**: Total wealth held by lower half
+- **Ratio (Top 10% / Bottom 50%)**: Concentration measure
+
+**Wealth shares (percentage points):**
+- **Share Bottom 50%**: % of total wealth held by lower half (typically 2-11%)
+- **Share Top 10%**: % of total wealth held by richest decile (typically 50-60%)
+- **Share Top 5%**: % of total wealth held by top 5% (typically 35-45%)
 
 ---
 
