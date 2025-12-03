@@ -9,7 +9,7 @@ This project combines distributional wealth accounts data from the European Cent
 ## 🔬 Research Questions
 
 1. **Pandemic Impact**: How has COVID-19 affected wealth distribution in Euro Area countries compared to pre-pandemic trends?
-2. **Demographic Effects**: Which wealth segments (by percentile) experienced the most significant changes during the pandemic?
+2. **Demographic Effects**: Which wealth segments (by percentile) experienced the most significant changes during the pandemic? How did the top 10% vs bottom 50% evolve?
 3. **Correlation Analysis**: How do COVID-19 infection rates and mortality correlate with changes in wealth inequality metrics?
 4. **Predictive Deviation**: To what extent did actual wealth metrics deviate from pre-pandemic linear trend predictions?
 5. **Cross-Country Comparison**: How do countries with different initial inequality levels (Germany, France, Slovenia) respond differently to the pandemic shock?
@@ -24,7 +24,11 @@ This project combines distributional wealth accounts data from the European Cent
   - Adjusted total assets and net wealth of households
   - Mean and median wealth distributions
   - Gini coefficients (inequality measure)
-- **Countries**: Germany (DE), France (FR), Slovenia (LT)
+  - **Distributional breakdowns** (new):
+    - Net wealth by decile (D1-D10)
+    - Top 10%, Top 5%, and Bottom 50% absolute wealth values
+    - Wealth shares (% of total) for Top 10%, Top 5%, and Bottom 50%
+- **Countries**: Germany (DE), France (FR), Slovenia (SI)
 
 ### COVID-19 Epidemiological Data
 
@@ -32,6 +36,35 @@ This project combines distributional wealth accounts data from the European Cent
 - **Coverage**: Daily case and death counts
 - **Aggregation**: Quarterly totals normalized per 100,000 population
 - **Variables**: Total cases, deaths, population data (2020)
+
+## 📁 Project Structure
+
+```
+covid-19-wealth-distribution/
+├── Covid-19 - Wealth Distribution.ipynb  # Main analysis notebook
+├── datasets/
+│   ├── Distributional Wealth Accounts.csv
+│   └── EU Covid-19.csv
+├── helpers/                                   # Modular Python code
+│   ├── config.py                          # Configuration and constants
+│   ├── data_loader.py                     # Data loading utilities
+│   ├── modeling.py                        # ML models for prediction
+│   ├── visualization.py                   # Plotting functions
+│   ├── evaluation.py                      # Model evaluation metrics
+│   └── analysis.py                        # Analysis utilities
+├── README.md
+└── requirements.txt
+```
+
+The project has been refactored into modular components:
+- **Configuration**: Centralized constants and metric definitions
+- **Data Loading**: Reusable data import and preprocessing
+- **Modeling**: Machine learning pipeline for wealth prediction
+- **Visualization**: Standard plotting utilities
+- **Evaluation**: Model performance metrics
+- **Analysis**: Correlation and statistical analysis
+
+See [helpers/README.md](helpers/README.md) for detailed module documentation.
 
 ## 🔧 Methodology
 
@@ -114,6 +147,44 @@ This project combines distributional wealth accounts data from the European Cent
 - **Gini vs Deaths**: Mixed signals across countries, no consistent pattern
 - **Mean Wealth vs Cases**: Slight positive correlations suggest asset price effects
 - **Temporal lags**: Immediate COVID impact vs delayed wealth data reporting
+
+### Distributional Analysis: Wealth Inequality Dynamics
+
+#### Top 10% vs Bottom 50% Wealth Evolution
+
+- **Wealth Concentration Ratios (Top 10% to Bottom 50%)**:
+  - **Germany**: 26.40x (2019) → 24.20x (2024) — **8.3% decrease** (narrowing gap)
+  - **France**: 10.98x (2019) → 11.04x (2024) — **0.6% increase** (slight widening)
+  - **Slovenia**: 4.86x (2019) → 4.71x (2024) — **3.2% decrease** (narrowing gap)
+
+- **Key Observation**: Germany shows highest absolute inequality but also largest improvement during pandemic period
+
+#### Wealth Share Distribution Changes (2019 → 2024)
+
+**Bottom 50% Share of Total Wealth:**
+- **Germany**: 2.25% → 2.51% (+0.26 percentage points)
+- **France**: 4.91% → 4.96% (+0.06 pp)
+- **Slovenia**: 10.32% → 10.62% (+0.30 pp)
+
+**Top 10% Share of Total Wealth:**
+- **Germany**: 59.40% → 60.50% (+1.10 pp) — wealth concentration increased
+- **France**: 53.83% → 54.71% (+0.89 pp) — wealth concentration increased
+- **Slovenia**: 50.16% → 50.07% (-0.09 pp) — wealth concentration slightly decreased
+
+**Net Distributional Shift:**
+- **Germany**: 1.36 pp toward top concentration
+- **France**: 0.95 pp toward top concentration
+- **Slovenia**: 0.21 pp away from top concentration
+
+#### Distributional Insights
+
+1. **Paradox of Inequality**: While wealth gaps narrowed in absolute ratio terms (Germany, Slovenia), the *share* of total wealth still shifted toward the top 10% in most countries
+2. **Slovenia's Resilience**: Only country where top 10% share actually declined, demonstrating more equitable pandemic response
+3. **Bottom 50% Gains**: All countries saw bottom 50% increase their absolute share, but gains were modest (0.06-0.30 pp)
+4. **Top 10% Resilience**: Wealthiest households maintained or increased their share despite pandemic, suggesting:
+   - Asset price appreciation (stocks, real estate) benefited top wealth holders
+   - Policy interventions (low interest rates, fiscal stimulus) supported asset valuations
+   - Labor market disruptions affected middle/lower wealth groups more severely
 
 ### Research Implications
 
