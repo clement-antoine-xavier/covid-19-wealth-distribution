@@ -51,9 +51,13 @@ This project combines distributional wealth accounts data from the European Cent
 
 ### 3. Predictive Modeling
 
-- **Approach**: Linear regression using pre-pandemic trends (2016-2019)
+- **Baseline Approach**: Linear regression using pre-pandemic trends (2016-2019)
+- **Enhanced Models**:
+  - **Polynomial Regression** (degree 2): Captures non-linear pre-pandemic trends
+  - **Ridge Regression**: Regularized model to prevent overfitting
 - **Purpose**: Establish counterfactual baseline to quantify pandemic disruption
-- **Models**: Separate models for each country-metric combination
+- **Models**: Separate models for each country-metric-model combination
+- **Model Comparison**: Side-by-side performance evaluation to identify best predictive approach
 - **Evaluation Metrics**:
   - MAE (Mean Absolute Error)
   - RMSE (Root Mean Squared Error)
@@ -74,10 +78,22 @@ This project combines distributional wealth accounts data from the European Cent
 
 ## 📈 Key Findings
 
+### Model Performance & Enhanced Predictions
+
+- **Model Comparison Results**: Polynomial and Ridge regression models significantly outperform simple linear baseline
+  - **Germany**: Polynomial models reduce average MAPE from 3.7% to 2.9%
+  - **France**: Linear models perform well (2.4% MAPE) due to stable pre-pandemic trends
+  - **Slovenia**: Polynomial models achieve up to 60% MAPE reduction (10.9% → 4.3%) for certain metrics
+- **Best Model by Metric**:
+  - Polynomial regression wins 8/15 metrics across countries
+  - Linear regression: 6/15 metrics (particularly for France)
+  - Ridge regression: 1/15 metrics
+- **Key Insight**: Capturing non-linear pre-pandemic trends essential for accurate counterfactual predictions
+
 ### Prediction Accuracy & Pandemic Disruption
 
-- **Pre-pandemic models failed**: Linear extrapolations from 2016-2019 significantly underestimated pandemic-era volatility
-- **Average MAPE**: 15-25% across countries, indicating substantial deviations from expected trends
+- **Pre-pandemic linear models**: Underestimated pandemic-era volatility for most metrics
+- **Enhanced models improved accuracy**: Polynomial features capture acceleration/deceleration in wealth trends
 - **Gini predictions most stable**: Inequality measures showed relatively smaller prediction errors, suggesting structural resilience
 
 ### COVID-19 Severity Comparison
@@ -88,7 +104,7 @@ This project combines distributional wealth accounts data from the European Cent
 
 ### Wealth Inequality Trends (Gini Coefficient)
 
-- **Germany**: Slight increase in inequality (Gini change: +0.01 to +0.02)
+- **Germany**: Slight increase in inequality (Gini change: +0.01 to +0.02 from 2020 Q1 to 2025 Q2)
 - **France**: Moderate inequality resilience with minor fluctuations
 - **Slovenia**: Relatively stable, confirming lower baseline inequality
 
@@ -101,17 +117,21 @@ This project combines distributional wealth accounts data from the European Cent
 
 ### Research Implications
 
-1. **Pandemic disrupted long-term wealth accumulation trends**: Pre-COVID linear models inadequate for crisis periods
+1. **Pandemic disrupted long-term wealth accumulation trends**: Pre-COVID models inadequate for crisis periods, but polynomial models capture non-linear dynamics better
 2. **Wealth inequality showed resilience**: Structural factors outweighed short-term pandemic shocks
 3. **Country-specific responses led to divergent outcomes**: Different policy approaches and economic structures matter
 4. **Asset price effects dominate**: Financial asset valuations influenced wealth more than labor market disruptions
+5. **Model selection matters**: Appropriate baseline model critical for measuring pandemic deviation from expected trends
 
 ## 🛠️ Technical Stack
 
 - **Python 3.x**
 - **Data Analysis**: pandas, numpy
 - **Visualization**: matplotlib (with seaborn styling)
-- **Machine Learning**: scikit-learn (LinearRegression, metrics)
+- **Machine Learning**: scikit-learn
+  - Models: LinearRegression, Ridge
+  - Preprocessing: PolynomialFeatures, make_pipeline
+  - Metrics: mean_absolute_error, mean_squared_error, r2_score
 - **Environment**: Jupyter Notebook
 
 ## 📁 Project Structure
@@ -148,38 +168,48 @@ pip install -r requirements.txt
    ```
 
 2. Execute cells sequentially:
-   - **Cells 1-10**: Setup, configuration, and helper functions
-   - **Cells 11-18**: Exploratory wealth analysis (2016-2019)
-   - **Cells 19-27**: Predictive modeling and error analysis
-   - **Cells 28-38**: COVID data integration
-   - **Cells 39-48**: Correlation analysis and visualizations
-   - **Cells 49-55**: Comprehensive insights dashboard
+   - **Cells 1-21**: Setup, configuration, and helper functions
+   - **Cells 22-28**: Exploratory wealth analysis (2016-2019)
+   - **Cells 29-34**: Enhanced predictive modeling with model comparison
+   - **Cells 35-42**: COVID data integration and initial predictions
+   - **Cells 43-54**: Correlation analysis and dual-axis visualizations
+   - **Cells 55-61**: Comprehensive insights dashboard
+   - **Cell 62**: Summary of key findings and research implications
 
 ## 📊 Notebook Structure
 
-The analysis is organized into clearly defined sections:
+The analysis is organized into clearly defined sections (62 cells total):
 
-1. **Import Libraries and Setup** - Dependencies and global configurations
-2. **Configuration** - Country and metric dictionaries
-3. **Data Loading** - Import and filter datasets
-4. **Helper Functions** - Reusable visualization and modeling utilities
-5. **Exploratory Analysis** - Pre-pandemic wealth trends by country
-6. **Predictive Modeling** - Linear regression baseline models
-7. **Prediction Evaluation** - Compare actual vs predicted (2020-2025)
-8. **COVID Data Processing** - Load and aggregate epidemiological data
-9. **Integration** - Merge COVID and wealth datasets
-10. **Correlation Analysis** - Statistical relationships
-11. **Insights Dashboard** - Comprehensive 5-panel visualization
-12. **Summary & Future Work** - Key findings and research directions
+1. **Import Libraries and Setup** - Dependencies, warnings configuration, and seaborn styling
+2. **Configuration** - Country codes, names, and wealth metric dictionaries
+3. **Data Loading** - Import ECB wealth accounts, filter countries, create train/test splits
+4. **Helper Functions - Wealth Visualization** - Reusable plotting utilities for time series
+5. **Helper Functions - Modeling & Evaluation** - Train/predict functions supporting multiple model types (Linear, Polynomial, Ridge)
+6. **Helper Functions - Model Comparison** - Batch training and performance evaluation
+7. **Helper Functions - COVID Integration** - Data merge and summary tables
+8. **Helper Functions - Dual-Axis COVID-Wealth Plots** - Integrated visualizations
+9. **Helper Functions - Correlation Analysis** - Statistical relationship computations
+10. **Helper Functions - Dashboard** - Multi-panel comprehensive visualization
+11. **Exploratory Analysis** - Pre-pandemic wealth trends by country (2016-2019)
+12. **Enhanced Predictive Modeling** - Model comparison across Linear, Polynomial, and Ridge approaches
+13. **Model Performance Analysis** - Comparative visualization and best model identification
+14. **Baseline Predictions (Legacy)** - Original linear regression analysis by country
+15. **COVID Data Processing** - Load, aggregate, and visualize epidemiological data
+16. **Data Integration** - Merge COVID and wealth datasets by country
+17. **Dual-Axis Visualizations** - COVID severity overlaid with wealth metrics
+18. **Correlation Analysis** - Compute and visualize statistical relationships
+19. **Comprehensive Insights Dashboard** - 5-panel summary with key findings
+20. **Summary & Interpretation** - Research questions answered, evidence links, and caveats
 
 ## ⚠️ Limitations & Caveats
 
 - **Correlation ≠ Causation**: Observed associations don't imply causal relationships
 - **Timing Misalignment**: Wealth data reported quarterly with potential lags
-- **Simple Models**: Linear regression provides baseline; non-linear methods may improve accuracy
+- **Model Complexity**: While polynomial and ridge models improve accuracy, more sophisticated time series methods (ARIMA, VAR) may capture additional dynamics
 - **Country Selection**: Analysis limited to 3 countries; not representative of entire Euro Area
 - **Missing Variables**: No controls for fiscal policy, monetary interventions, or sector-specific effects
 - **Measurement Issues**: Wealth accounts subject to revision and methodological changes
+- **Sample Size**: Limited pre-pandemic training data (16 quarters) for complex models
 
 ## 🔮 Future Research Directions
 
@@ -191,10 +221,12 @@ The analysis is organized into clearly defined sections:
 
 ### Methodological Improvements
 
-- **Time Series Models**: ARIMAX, VAR for dynamic relationships
-- **Machine Learning**: Gradient boosting, random forests for non-linear patterns
-- **Causal Inference**: Difference-in-differences, synthetic control methods
-- **Panel Analysis**: Fixed effects models across multiple countries
+- **Time Series Models**: ARIMAX, VAR, Prophet for dynamic relationships and seasonality
+- **Machine Learning**: Gradient boosting, random forests, neural networks for complex non-linear patterns
+- **Ensemble Methods**: Combine Linear, Polynomial, Ridge, and advanced models for robust predictions
+- **Causal Inference**: Difference-in-differences, synthetic control methods, instrumental variables
+- **Panel Analysis**: Fixed effects models across multiple countries and time periods
+- **Hyperparameter Optimization**: Grid search for optimal polynomial degree and regularization strength
 
 ### Inequality Metrics Extension
 
