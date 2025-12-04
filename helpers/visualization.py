@@ -9,7 +9,7 @@ from .config import WEALTH_METRICS, COUNTRY_NAMES
 
 def plot_country_wealth_panels(df_slice, country_code):
     """
-    Create a 2x2 panel plot showing all wealth metrics for a specific country.
+    Create a 2x2 or 2x3 panel plot showing all wealth metrics for a specific country.
 
     Parameters:
     -----------
@@ -20,74 +20,111 @@ def plot_country_wealth_panels(df_slice, country_code):
 
     Displays:
     ---------
-    A figure with 4 subplots showing:
-    - Median Wealth, Mean Wealth (top row)
+    A figure with subplots showing available metrics:
+    - Total Assets (if available), Median Wealth, Mean Wealth (top row)
     - Net Wealth, Gini Coefficient (bottom row)
     """
     metrics = WEALTH_METRICS[country_code]
     name = COUNTRY_NAMES[country_code]
+    
+    # Check if total_assets is available
+    has_total_assets = "total_assets" in metrics
 
-    # Create 2x2 subplot grid
-    fig, axes = plt.subplots(2, 2, figsize=(14, 10))
+    # Create subplot grid (2x3 if total_assets available, else 2x2)
+    if has_total_assets:
+        fig, axes = plt.subplots(2, 3, figsize=(18, 10))
+    else:
+        fig, axes = plt.subplots(2, 2, figsize=(14, 10))
+        
     fig.suptitle(
         f"{name} - Wealth Distribution Metrics (2016-2019)",
         fontsize=16,
         fontweight="bold",
     )
 
-    # Plot 1: Median Wealth
-    axes[0, 0].plot(
+    plot_idx = 0
+    
+    # Plot Total Assets if available
+    if has_total_assets:
+        r, c = divmod(plot_idx, 3)
+        axes[r, c].plot(
+            df_slice["DATE"],
+            df_slice[metrics["total_assets"]],
+            color="#1f77b4",
+            linewidth=2,
+            marker="o",
+        )
+        axes[r, c].set_title("Adjusted Total Assets", fontweight="bold")
+        axes[r, c].set_ylabel("EUR (millions)")
+        axes[r, c].grid(True, alpha=0.3)
+        axes[r, c].tick_params(axis="x", rotation=45)
+        plot_idx += 1
+
+    # Plot Median Wealth
+    r, c = divmod(plot_idx, 3 if has_total_assets else 2)
+    axes[r, c].plot(
         df_slice["DATE"],
         df_slice[metrics["median_wealth"]],
         color="#ff7f0e",
         linewidth=2,
         marker="o",
     )
-    axes[0, 0].set_title("Net Wealth - Median", fontweight="bold")
-    axes[0, 0].set_ylabel("EUR")
-    axes[0, 0].grid(True, alpha=0.3)
-    axes[0, 0].tick_params(axis="x", rotation=45)
+    axes[r, c].set_title("Net Wealth - Median", fontweight="bold")
+    axes[r, c].set_ylabel("EUR")
+    axes[r, c].grid(True, alpha=0.3)
+    axes[r, c].tick_params(axis="x", rotation=45)
+    plot_idx += 1
 
-    # Plot 2: Mean Wealth
-    axes[0, 1].plot(
+    # Plot Mean Wealth
+    r, c = divmod(plot_idx, 3 if has_total_assets else 2)
+    axes[r, c].plot(
         df_slice["DATE"],
         df_slice[metrics["mean_wealth"]],
         color="#2ca02c",
         linewidth=2,
         marker="o",
     )
-    axes[0, 1].set_title("Net Wealth - Mean", fontweight="bold")
-    axes[0, 1].set_ylabel("EUR")
-    axes[0, 1].grid(True, alpha=0.3)
-    axes[0, 1].tick_params(axis="x", rotation=45)
+    axes[r, c].set_title("Net Wealth - Mean", fontweight="bold")
+    axes[r, c].set_ylabel("EUR")
+    axes[r, c].grid(True, alpha=0.3)
+    axes[r, c].tick_params(axis="x", rotation=45)
+    plot_idx += 1
 
-    # Plot 3: Net Wealth
-    axes[1, 0].plot(
+    # Plot Net Wealth
+    r, c = divmod(plot_idx, 3 if has_total_assets else 2)
+    axes[r, c].plot(
         df_slice["DATE"],
         df_slice[metrics["net_wealth"]],
         color="#d62728",
         linewidth=2,
         marker="o",
     )
-    axes[1, 0].set_title("Adjusted Net Wealth", fontweight="bold")
-    axes[1, 0].set_xlabel("Date")
-    axes[1, 0].set_ylabel("EUR (millions)")
-    axes[1, 0].grid(True, alpha=0.3)
-    axes[1, 0].tick_params(axis="x", rotation=45)
+    axes[r, c].set_title("Adjusted Net Wealth", fontweight="bold")
+    axes[r, c].set_xlabel("Date")
+    axes[r, c].set_ylabel("EUR (millions)")
+    axes[r, c].grid(True, alpha=0.3)
+    axes[r, c].tick_params(axis="x", rotation=45)
+    plot_idx += 1
 
-    # Plot 4: Gini Coefficient (inequality measure: higher = more inequality)
-    axes[1, 1].plot(
+    # Plot Gini Coefficient
+    r, c = divmod(plot_idx, 3 if has_total_assets else 2)
+    axes[r, c].plot(
         df_slice["DATE"],
         df_slice[metrics["gini"]],
         color="#9467bd",
         linewidth=2,
         marker="o",
     )
-    axes[1, 1].set_title("Gini Coefficient", fontweight="bold")
-    axes[1, 1].set_xlabel("Date")
-    axes[1, 1].set_ylabel("Gini")
-    axes[1, 1].grid(True, alpha=0.3)
-    axes[1, 1].tick_params(axis="x", rotation=45)
+    axes[r, c].set_title("Gini Coefficient", fontweight="bold")
+    axes[r, c].set_xlabel("Date")
+    axes[r, c].set_ylabel("Gini")
+    axes[r, c].grid(True, alpha=0.3)
+    axes[r, c].tick_params(axis="x", rotation=45)
+    plot_idx += 1
+    
+    # Hide unused subplot if total_assets available (2x3 grid has 6 slots, we use 5)
+    if has_total_assets:
+        axes[1, 2].axis('off')
 
     plt.tight_layout()
     plt.show()
@@ -127,6 +164,9 @@ def plot_prediction_vs_actual(
         "gini": "Gini Coefficient",
     }
     order = ["total_assets", "median_wealth", "mean_wealth", "net_wealth", "gini"]
+    
+    # Filter to only include metrics available for this country
+    available_order = [m for m in order if m in metrics and m in preds_country]
 
     # Create subplot grid
     fig, axes = plt.subplots(2, 3, figsize=(20, 10))
@@ -137,9 +177,7 @@ def plot_prediction_vs_actual(
     )
 
     # Plot each metric
-    for idx, metric_key in enumerate(order):
-        if metric_key not in preds_country:
-            continue
+    for idx, metric_key in enumerate(available_order):
         r, c = divmod(idx, 3)  # Calculate subplot position
         ax = axes[r, c]
         col = metrics[metric_key]

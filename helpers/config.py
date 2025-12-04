@@ -26,6 +26,7 @@ WEALTH_METRICS = {
     },
     "FR": {  # France
         # Aggregate metrics
+        "total_assets": "Adjusted total assets of households (DWA.Q.FR.S14.A.LE.F_NNA._Z.EUR.S.N)",
         "median_wealth": "Net wealth of households, median (DWA.Q.FR.S14.N.LE.NWA._Z.EUR_MD.S.N)",
         "mean_wealth": "Net wealth of households, mean (DWA.Q.FR.S14.N.LE.NWA._Z.EUR_MN.S.N)",
         "net_wealth": "Adjusted wealth (net) of households (DWA.Q.FR.S14.N.LE.NWA._Z.EUR.S.N)",

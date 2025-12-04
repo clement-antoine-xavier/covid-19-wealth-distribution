@@ -148,6 +148,7 @@
 ### Core Wealth Distribution Indicators
 
 **Aggregate Metrics:**
+
 1. **Net Wealth (Total)** - Adjusted household wealth minus liabilities
 2. **Median Wealth** - Middle household value (50th percentile)
 3. **Mean Wealth** - Average household value
@@ -609,6 +610,7 @@ jupyter notebook "Covid-19 - Wealth Distribution.ipynb"
 **Column naming convention**: `DWA.Q.{CC}.S14.N.LE.NWA.{PCTL}.{UNIT}.S.N`
 
 Where:
+
 - **DWA.Q** = Distributional Wealth Accounts, Quarterly
 - **{CC}** = Country code (DE, FR, SI)
 - **S14** = Households sector
@@ -619,6 +621,7 @@ Where:
 - **S.N** = Seasonally adjusted, Not applicable
 
 **Example columns used:**
+
 ```python
 # Germany (DE)
 "median_wealth": "Net wealth of households, median (DWA.Q.DE.S14.N.LE.NWA._Z.EUR_MD.S.N)"
@@ -629,6 +632,7 @@ Where:
 ### COVID-19 Dataset Columns
 
 **Original ECDC columns** (daily data):
+
 - `dateRep` - Report date
 - `cases` - Daily new cases
 - `deaths` - Daily new deaths
@@ -636,6 +640,7 @@ Where:
 - `popData2020` - Population (2020)
 
 **Derived quarterly columns** (analysis):
+
 - `DATE` - Quarter end date (aggregated)
 - `cases` - Total cases in quarter
 - `deaths` - Total deaths in quarter
@@ -665,11 +670,13 @@ Where:
 ### Distributional Metrics
 
 **Absolute wealth values:**
+
 - **Top 10% (D10)**: Total wealth held by richest decile
 - **Bottom 50% (B50)**: Total wealth held by lower half
 - **Ratio (Top 10% / Bottom 50%)**: Concentration measure
 
 **Wealth shares (percentage points):**
+
 - **Share Bottom 50%**: % of total wealth held by lower half (typically 2-11%)
 - **Share Top 10%**: % of total wealth held by richest decile (typically 50-60%)
 - **Share Top 5%**: % of total wealth held by top 5% (typically 35-45%)
@@ -683,4 +690,3 @@ Where:
 - **Main Notebook**: `Covid-19 - Wealth Distribution.ipynb`
 - **Documentation**: `README.md`
 - **Repository**: Full code and data available
-
