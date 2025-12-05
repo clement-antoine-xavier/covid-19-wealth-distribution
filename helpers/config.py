@@ -11,8 +11,7 @@ COUNTRY_NAMES = {"DE": "Germany", "FR": "France", "SI": "Slovenia"}
 # Each country has aggregate metrics plus distributional breakdowns by decile
 WEALTH_METRICS = {
     "DE": {  # Germany
-        # Aggregate metrics (total_assets not available for DE)
-        "total_assets": "Adjusted total assets of households (DWA.Q.DE.S14.A.LE.F_NNA._Z.EUR.S.N)",
+        # Aggregate metrics
         "median_wealth": "Net wealth of households, median (DWA.Q.DE.S14.N.LE.NWA._Z.EUR_MD.S.N)",
         "mean_wealth": "Net wealth of households, mean (DWA.Q.DE.S14.N.LE.NWA._Z.EUR_MN.S.N)",
         "net_wealth": "Adjusted wealth (net) of households (DWA.Q.DE.S14.N.LE.NWA._Z.EUR.S.N)",
@@ -27,7 +26,6 @@ WEALTH_METRICS = {
     },
     "FR": {  # France
         # Aggregate metrics
-        "total_assets": "Adjusted total assets of households (DWA.Q.FR.S14.A.LE.F_NNA._Z.EUR.S.N)",
         "median_wealth": "Net wealth of households, median (DWA.Q.FR.S14.N.LE.NWA._Z.EUR_MD.S.N)",
         "mean_wealth": "Net wealth of households, mean (DWA.Q.FR.S14.N.LE.NWA._Z.EUR_MN.S.N)",
         "net_wealth": "Adjusted wealth (net) of households (DWA.Q.FR.S14.N.LE.NWA._Z.EUR.S.N)",
@@ -42,7 +40,6 @@ WEALTH_METRICS = {
     },
     "SI": {  # Slovenia
         # Aggregate metrics
-        "total_assets": "Adjusted total assets of households (DWA.Q.SI.S14.A.LE.F_NNA._Z.EUR.S.N)",
         "median_wealth": "Net wealth of households, median (DWA.Q.SI.S14.N.LE.NWA._Z.EUR_MD.S.N)",
         "mean_wealth": "Net wealth of households, mean (DWA.Q.SI.S14.N.LE.NWA._Z.EUR_MN.S.N)",
         "net_wealth": "Adjusted wealth (net) of households (DWA.Q.SI.S14.N.LE.NWA._Z.EUR.S.N)",
