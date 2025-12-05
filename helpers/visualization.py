@@ -76,8 +76,19 @@ def plot_country_wealth_panels(df_slice, country_code):
     axes[1, 0].grid(True, alpha=0.3)
     axes[1, 0].tick_params(axis="x", rotation=45)
 
-    # Hide the last subplot (empty)
-    axes[1, 1].axis('off')
+    # Plot Mean Wealth
+    axes[1, 1].plot(
+        df_slice["DATE"],
+        df_slice[metrics["mean_wealth"]],
+        color="#2ca02c",
+        linewidth=2,
+        marker="o",
+    )
+    axes[1, 1].set_title("Net Wealth - Mean", fontweight="bold")
+    axes[1, 1].set_xlabel("Date")
+    axes[1, 1].set_ylabel("EUR")
+    axes[1, 1].grid(True, alpha=0.3)
+    axes[1, 1].tick_params(axis="x", rotation=45)
 
     plt.tight_layout()
     plt.show()
@@ -111,10 +122,11 @@ def plot_prediction_vs_actual(
     # Titles for each metric
     mapping_titles = {
         "median_wealth": "Net Wealth - Median",
+        "mean_wealth": "Net Wealth - Mean",
         "net_wealth": "Adjusted Net Wealth",
         "gini": "Gini Coefficient",
     }
-    order = ["median_wealth", "net_wealth", "gini"]
+    order = ["median_wealth", "mean_wealth", "net_wealth", "gini"]
     
     # Filter to only include metrics available for this country
     available_order = [m for m in order if m in metrics and m in preds_country]
@@ -161,7 +173,7 @@ def plot_prediction_vs_actual(
         # Set appropriate y-axis label based on metric type
         if metric_key == "net_wealth":
             ax.set_ylabel("EUR (millions)")
-        elif metric_key == "median_wealth":
+        elif metric_key in ["median_wealth", "mean_wealth"]:
             ax.set_ylabel("EUR")
         else:
             ax.set_ylabel("Gini")
@@ -203,12 +215,17 @@ def plot_config_summary():
 
     # Display metrics
     metrics = list(WEALTH_METRICS['DE'].keys())
-    metric_labels = ['Median\nWealth', 'Net\nWealth', 'Gini', 
-                     'Top 10%', 'Bottom 50%', 'Share\nB50%', 'Share\nT10%', 'Share\nT5%']
-    colors = ['#ff7f0e']*3 + ['#2ca02c']*2 + ['#d62728']*3
+    # Simplified labels for the expanded metric set
+    metric_labels = ['Median', 'Mean', 'Net', 'Gini', 
+                     'Assets\nB50%', 'Liab.', 'Housing\nTenant',
+                     'Top10%', 'B50%', 'D6', 'D7', 'D9',
+                     'T10%\nPerCap', 'T10%\nPerHH',
+                     'Share\nB50%', 'Share\nT10%', 'Share\nT5%']
+    # Color code: Aggregate(4), Assets/Liab(3), Deciles(7), Shares(3)
+    colors = ['#ff7f0e']*4 + ['#1f77b4']*3 + ['#2ca02c']*7 + ['#d62728']*3
     bars = ax2.bar(range(len(metrics)), [1]*len(metrics), color=colors, alpha=0.7)
     ax2.set_xticks(range(len(metrics)))
-    ax2.set_xticklabels(metric_labels, fontsize=9, rotation=0)
+    ax2.set_xticklabels(metric_labels, fontsize=8, rotation=45, ha='right')
     ax2.set_ylabel('Metric Categories', fontweight='bold')
     ax2.set_title(f'Metrics per Country (n={len(metrics)})', fontsize=12, fontweight='bold')
     ax2.set_ylim(0, 1.5)
@@ -220,10 +237,11 @@ def plot_config_summary():
     # Add legend
     legend_elements = [
         Patch(facecolor='#ff7f0e', alpha=0.7, label='Aggregate'),
-        Patch(facecolor='#2ca02c', alpha=0.7, label='Distributional'),
-        Patch(facecolor='#d62728', alpha=0.7, label='Shares')
+        Patch(facecolor='#1f77b4', alpha=0.7, label='Assets/Liabilities'),
+        Patch(facecolor='#2ca02c', alpha=0.7, label='Decile Breakdowns'),
+        Patch(facecolor='#d62728', alpha=0.7, label='Wealth Shares')
     ]
-    ax2.legend(handles=legend_elements, loc='upper right', fontsize=9)
+    ax2.legend(handles=legend_elements, loc='upper right', fontsize=8)
 
     plt.tight_layout()
     plt.show()
