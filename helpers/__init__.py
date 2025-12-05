@@ -1,1 +1,1 @@
-"""COVID-19 Wealth Distribution Analysis Package"""
+"""COVID-19 Wealth Distribution Analysis Helpers Package"""
