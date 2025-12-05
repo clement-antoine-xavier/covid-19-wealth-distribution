@@ -13,7 +13,6 @@ WEALTH_METRICS = {
     "DE": {  # Germany
         # Aggregate metrics
         "median_wealth": "Net wealth of households, median (DWA.Q.DE.S14.N.LE.NWA._Z.EUR_MD.S.N)",
-        "mean_wealth": "Net wealth of households, mean (DWA.Q.DE.S14.N.LE.NWA._Z.EUR_MN.S.N)",
         "net_wealth": "Adjusted wealth (net) of households (DWA.Q.DE.S14.N.LE.NWA._Z.EUR.S.N)",
         "gini": "Gini coefficient of households (DWA.Q.DE.S14._Z._Z.NWA._Z.GI.S.N)",
         # Distributional breakdowns - Wealth by percentile groups
@@ -27,7 +26,6 @@ WEALTH_METRICS = {
     "FR": {  # France
         # Aggregate metrics
         "median_wealth": "Net wealth of households, median (DWA.Q.FR.S14.N.LE.NWA._Z.EUR_MD.S.N)",
-        "mean_wealth": "Net wealth of households, mean (DWA.Q.FR.S14.N.LE.NWA._Z.EUR_MN.S.N)",
         "net_wealth": "Adjusted wealth (net) of households (DWA.Q.FR.S14.N.LE.NWA._Z.EUR.S.N)",
         "gini": "Gini coefficient of households (DWA.Q.FR.S14._Z._Z.NWA._Z.GI.S.N)",
         # Distributional breakdowns
@@ -41,7 +39,6 @@ WEALTH_METRICS = {
     "SI": {  # Slovenia
         # Aggregate metrics
         "median_wealth": "Net wealth of households, median (DWA.Q.SI.S14.N.LE.NWA._Z.EUR_MD.S.N)",
-        "mean_wealth": "Net wealth of households, mean (DWA.Q.SI.S14.N.LE.NWA._Z.EUR_MN.S.N)",
         "net_wealth": "Adjusted wealth (net) of households (DWA.Q.SI.S14.N.LE.NWA._Z.EUR.S.N)",
         "gini": "Gini coefficient of households (DWA.Q.SI.S14._Z._Z.NWA._Z.GI.S.N)",
         # Distributional breakdowns

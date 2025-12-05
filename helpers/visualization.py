@@ -21,8 +21,8 @@ def plot_country_wealth_panels(df_slice, country_code):
     Displays:
     ---------
     A figure with subplots showing available metrics:
-    - Median Wealth, Mean Wealth (top row)
-    - Net Wealth, Gini Coefficient (bottom row)
+    - Median Wealth, Net Wealth (top row)
+    - Gini Coefficient (bottom row - one empty)
     """
     metrics = WEALTH_METRICS[country_code]
     name = COUNTRY_NAMES[country_code]
@@ -49,46 +49,35 @@ def plot_country_wealth_panels(df_slice, country_code):
     axes[0, 0].grid(True, alpha=0.3)
     axes[0, 0].tick_params(axis="x", rotation=45)
 
-    # Plot Mean Wealth
-    axes[0, 1].plot(
-        df_slice["DATE"],
-        df_slice[metrics["mean_wealth"]],
-        color="#2ca02c",
-        linewidth=2,
-        marker="o",
-    )
-    axes[0, 1].set_title("Net Wealth - Mean", fontweight="bold")
-    axes[0, 1].set_ylabel("EUR")
-    axes[0, 1].grid(True, alpha=0.3)
-    axes[0, 1].tick_params(axis="x", rotation=45)
-
     # Plot Net Wealth
-    axes[1, 0].plot(
+    axes[0, 1].plot(
         df_slice["DATE"],
         df_slice[metrics["net_wealth"]],
         color="#d62728",
         linewidth=2,
         marker="o",
     )
-    axes[1, 0].set_title("Adjusted Net Wealth", fontweight="bold")
-    axes[1, 0].set_xlabel("Date")
-    axes[1, 0].set_ylabel("EUR (millions)")
-    axes[1, 0].grid(True, alpha=0.3)
-    axes[1, 0].tick_params(axis="x", rotation=45)
+    axes[0, 1].set_title("Adjusted Net Wealth", fontweight="bold")
+    axes[0, 1].set_ylabel("EUR (millions)")
+    axes[0, 1].grid(True, alpha=0.3)
+    axes[0, 1].tick_params(axis="x", rotation=45)
 
     # Plot Gini Coefficient
-    axes[1, 1].plot(
+    axes[1, 0].plot(
         df_slice["DATE"],
         df_slice[metrics["gini"]],
         color="#9467bd",
         linewidth=2,
         marker="o",
     )
-    axes[1, 1].set_title("Gini Coefficient", fontweight="bold")
-    axes[1, 1].set_xlabel("Date")
-    axes[1, 1].set_ylabel("Gini")
-    axes[1, 1].grid(True, alpha=0.3)
-    axes[1, 1].tick_params(axis="x", rotation=45)
+    axes[1, 0].set_title("Gini Coefficient", fontweight="bold")
+    axes[1, 0].set_xlabel("Date")
+    axes[1, 0].set_ylabel("Gini")
+    axes[1, 0].grid(True, alpha=0.3)
+    axes[1, 0].tick_params(axis="x", rotation=45)
+
+    # Hide the last subplot (empty)
+    axes[1, 1].axis('off')
 
     plt.tight_layout()
     plt.show()
@@ -122,11 +111,10 @@ def plot_prediction_vs_actual(
     # Titles for each metric
     mapping_titles = {
         "median_wealth": "Net Wealth - Median",
-        "mean_wealth": "Net Wealth - Mean",
         "net_wealth": "Adjusted Net Wealth",
         "gini": "Gini Coefficient",
     }
-    order = ["median_wealth", "mean_wealth", "net_wealth", "gini"]
+    order = ["median_wealth", "net_wealth", "gini"]
     
     # Filter to only include metrics available for this country
     available_order = [m for m in order if m in metrics and m in preds_country]
@@ -173,12 +161,17 @@ def plot_prediction_vs_actual(
         # Set appropriate y-axis label based on metric type
         if metric_key == "net_wealth":
             ax.set_ylabel("EUR (millions)")
-        elif metric_key in ["median_wealth", "mean_wealth"]:
+        elif metric_key == "median_wealth":
             ax.set_ylabel("EUR")
         else:
             ax.set_ylabel("Gini")
 
         ax.legend()
+
+    # Hide unused subplots
+    for idx in range(len(available_order), 4):
+        r, c = divmod(idx, 2)
+        axes[r, c].axis('off')
 
     plt.tight_layout()
     plt.show()
@@ -210,9 +203,9 @@ def plot_config_summary():
 
     # Display metrics
     metrics = list(WEALTH_METRICS['DE'].keys())
-    metric_labels = ['Median\nWealth', 'Mean\nWealth', 'Net\nWealth', 'Gini', 
+    metric_labels = ['Median\nWealth', 'Net\nWealth', 'Gini', 
                      'Top 10%', 'Bottom 50%', 'Share\nB50%', 'Share\nT10%', 'Share\nT5%']
-    colors = ['#ff7f0e']*4 + ['#2ca02c']*2 + ['#d62728']*3
+    colors = ['#ff7f0e']*3 + ['#2ca02c']*2 + ['#d62728']*3
     bars = ax2.bar(range(len(metrics)), [1]*len(metrics), color=colors, alpha=0.7)
     ax2.set_xticks(range(len(metrics)))
     ax2.set_xticklabels(metric_labels, fontsize=9, rotation=0)
